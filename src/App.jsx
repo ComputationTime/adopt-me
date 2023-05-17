@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Details from "./Details";
 import { Link } from "react-router-dom";
+import React from "react";
 
 const queryClient = new QueryClient({
   defaultOptoins: {
@@ -17,17 +18,19 @@ const queryClient = new QueryClient({
 const App = () => {
   return (
     <div>
-      <BrowserRouter>
-        <QueryClientProvider client={queryClient}>
-          <header>
-            <Link to="/">Adopt Me!</Link>
-          </header>
-          <Routes>
-            <Route path="/details/:id" element={<Details />} />
-            <Route path="/" element={<SearchParams />} />
-          </Routes>
-        </QueryClientProvider>
-      </BrowserRouter>
+      <React.StrictMode>
+        <BrowserRouter>
+          <QueryClientProvider client={queryClient}>
+            <header>
+              <Link to="/">Adopt Me!</Link>
+            </header>
+            <Routes>
+              <Route path="/details/:id" element={<Details />} />
+              <Route path="/" element={<SearchParams />} />
+            </Routes>
+          </QueryClientProvider>
+        </BrowserRouter>
+      </React.StrictMode>
     </div>
   );
 };
